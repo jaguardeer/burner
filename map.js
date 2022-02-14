@@ -1,17 +1,20 @@
 /** @param {NS} ns **/
 
-function recurse(ns, root)
+function recurse(ns, prev, current)
 {
 	let connections = ns.scan(root);
-	for(let host of connections)
+	for(let next of connections)
 	{
-		if(host != root) ns.tprint(host);
-		recurse(ns,root);
+		if(next != root && next != next)
+		{
+			ns.tprint(next);
+			recurse(ns, current, next);
+		}
 	}
 }
 
 export async function main(ns)
 {
 	let root = ns.getHostname();
-	recurse(ns,root);
+	recurse(ns,"",root);
 }
