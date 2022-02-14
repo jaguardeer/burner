@@ -1,14 +1,14 @@
 /** @param {NS} ns **/
 
-function recurse(ns, prev, current)
+function recurse(ns, prev, current, depth)
 {
-	let connections = ns.scan(root);
+	let connections = ns.scan(current);
 	for(let next of connections)
 	{
-		if(next != root && next != next)
+		if(next != current && next != prev)
 		{
-			ns.tprint(next);
-			recurse(ns, current, next);
+			ns.tprint(Array(depth).join("-") + next);
+			recurse(ns, current, next, depth+1);
 		}
 	}
 }
@@ -16,5 +16,5 @@ function recurse(ns, prev, current)
 export async function main(ns)
 {
 	let root = ns.getHostname();
-	recurse(ns,"",root);
+	recurse(ns,"",root,1);
 }
