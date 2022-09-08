@@ -1,0 +1,1 @@
+{"host":"omega-net","filename":"contract-895635.cct","type":"Array Jumping Game","data":[9,1,2,8,4,6,6,10,7],"answer":true}
